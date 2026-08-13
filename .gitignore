@@ -1,6 +1,5 @@
 data/chroma/*
 !data/chroma/.gitkeep
-app/config.py
 
 test.ipynb
 

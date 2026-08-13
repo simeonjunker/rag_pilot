@@ -1,7 +1,9 @@
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # ---------------------------------------------------------------------------
-# Project root and data directories
+# Project root and data directories, load .env file
 # ---------------------------------------------------------------------------
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -9,6 +11,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 CHROMA_DIR = DATA_DIR / "chroma"
+
+load_dotenv(PROJECT_ROOT / ".env")
 
 # ---------------------------------------------------------------------------
 # Constants for Wikipedia ingestion and querying
@@ -32,8 +36,8 @@ WIKI_URLS = [
 
 USER_AGENT = (
     "MyRAGProject/0.1 "
-    "(https://github.com/yourusername/my-rag-project; "
-    "your-email@example.com)"
+    f"({os.getenv('USER_AGENT_REPO')}; "
+    f"{os.getenv('USER_AGENT_MAIL')})"
 )
 
 # ---------------------------------------------------------------------------
@@ -49,5 +53,4 @@ RETRIEVAL_K = 10
 # Constants for LLM configuration
 # ---------------------------------------------------------------------------
 
-LLM_BASE_URL = "URL_TO_YOUR_vLLM_SERVER"  # Replace with your actual vLLM server URL
 LLM_TEMP = 0.0

@@ -18,10 +18,10 @@ Install the project:
 pip install -e .
 ```
 
-Create a copy of `config.py` and add the vLLM server URL:
+Create `.env` file and fill in the necessary info:
 ```bash
-cp app/config_template.py app/config.py
-nano app/config.py
+cp .env.template .env
+nano .env
 ```
 
 ## Build the vector store
