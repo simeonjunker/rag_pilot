@@ -1,3 +1,9 @@
+data/chroma/*
+!data/chroma/.gitkeep
+app/config.py
+
+test.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
