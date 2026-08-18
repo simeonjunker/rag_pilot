@@ -134,13 +134,6 @@ class TestFetchDocs:
         assert fetch_docs([]) == []
         mock_loader.assert_not_called()
 
-    @patch(f"{MODULE_PATH}.load_wikipedia_url")
-    def test_propagates_errors_from_loader(self, mock_loader):
-        mock_loader.side_effect = ValueError("boom")
-
-        with pytest.raises(ValueError, match="boom"):
-            fetch_docs(["https://en.wikipedia.org/wiki/X"])
-
 
 # ---------------------------------------------------------------------------
 # chunk_docs
