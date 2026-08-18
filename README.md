@@ -7,8 +7,9 @@ It indexes selected Wikipedia pages into a Chroma vector store, retrieves releva
 
 - Downloads and preprocesses Wikipedia
 - Splits documents into chunks and stores them in Chroma
-- Uses a chat agent with retrieval and weather tools
 - Connects to a vLLM-compatible OpenAI API endpoint
+- Provides the LLM-based agent with retrieval and weather tools
+- Provides access to the chatbot via FastAPI and a browser UI
 
 ## Setup
 
@@ -34,7 +35,17 @@ python scripts/ingest.py --force_download
 
 You can omit --force_download to reuse the cached raw documents in data/raw/raw_docs.json.
 
-## Use the agent
+## Start the server
+
+Start the server with the following command:
+
+```bash
+uvicorn app.api:app --reload
+```
+
+After this, go to [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the chat UI.
+
+## Use the agent without a server
 
 Example:
 
@@ -42,12 +53,17 @@ Example:
 from app.agent import ChatAgent
 
 agent = ChatAgent()
-agent.query("What are good places to visit in Dresden?")
+
+# verbose outputs with tool calls
+agent.verbose_query("Are there nice parks in Leipzig?")
+
+# stream responses, no tool calls
+await agent.stream_query("How about outside the city?")
 ```
 
 ## Project structure
 
-- app/: core agent, ingestion, retrieval, tool, and LLM setup code
-- scripts/: helper scripts, including vector store ingestion
+- app/: core agent, ingestion, retrieval, tool, LLM setup and API code
+- scripts/: helper scripts (currently only vector store ingestion)
 - data/: cached raw documents and persisted Chroma data
 - tests/: pytest-based tests

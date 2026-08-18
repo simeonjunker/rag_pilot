@@ -14,6 +14,8 @@ def setup_openai_client():
         ChatOpenAI: The configured chat client.
     """
 
+    print(f'Trying to connect to model hosted on {os.environ["OPENAI_BASE_URL"]}...')
+
     if os.getenv("OPENAI_SELECTED_MODEL") == "auto":
         
         # auto-select the first available model from the OpenAI API

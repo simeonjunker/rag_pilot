@@ -8,3 +8,6 @@ langchain-huggingface==1.2.2
 sentence-transformers==5.7.0
 trafilatura==2.2.0
 pytest==9.1.1
+fastapi==0.141.1
+uvicorn==0.52.1
+pydantic==2.13.4
