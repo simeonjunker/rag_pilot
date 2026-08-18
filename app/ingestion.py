@@ -70,7 +70,11 @@ def fetch_docs(urls: list[str]) -> list[dict]:
     """
     docs = []
     for url in urls:
-        doc = load_wikipedia_url(url, user_agent=USER_AGENT)
+        try:
+            doc = load_wikipedia_url(url, user_agent=USER_AGENT)
+        except Exception as e:
+            print(f"Error loading {url}: {e}")
+            continue
         docs.append(doc)
     return docs
 
