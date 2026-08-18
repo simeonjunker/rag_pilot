@@ -67,3 +67,4 @@ await agent.stream_query("How about outside the city?")
 - scripts/: helper scripts (currently only vector store ingestion)
 - data/: cached raw documents and persisted Chroma data
 - tests/: pytest-based tests
+- static/: HTML/CSS/JS code for the browser UI
